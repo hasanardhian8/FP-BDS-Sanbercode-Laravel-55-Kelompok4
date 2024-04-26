@@ -24,10 +24,10 @@ class PostController extends Controller
     return view('post.show', ['post' => $post]);
   }
 
-  public function create()
-  {
-    return view('post.post');
-  }
+  // public function create()
+  // {
+  //   return view('post.post');
+  // }
 
   public function store(Request $request)
   {

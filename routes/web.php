@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CommentController;
+use App\Models\Comment;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -23,7 +24,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/posts', [PostController::class, 'index'])->name('post.index');
-    Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
     Route::post('/posts', [PostController::class, 'store'])->name('post.store');
     Route::get('/posts/{postId}', [PostController::class, 'show'])->name('post.show');
     Route::get('/posts/{postId}/edit', [PostController::class, 'edit'])->name('post.edit');
@@ -32,7 +32,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/comment', [CommentController::class, 'index'])->name('comment.index');
     Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
-    Route::get('/comment/{id}', [PostController::class, 'index'])->name('comment.show');
+    Route::get('/comment/{postId}', [CommentController::class, 'create'])->name('comment.create');
+    Route::get('/comment/{commentId}/edit', [CommentController::class, 'edit'])->name('comment.edit');
+    Route::put('/comment/{commentId}', [CommentController::class, 'update'])->name('comment.update');
     Route::delete('/comment/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');

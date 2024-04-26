@@ -9,26 +9,8 @@
 </head>
 
 <body>
-    <h1>comment</h1>
-    <div class="container">
-        <p>
-            The form below contains a textarea for
-            posting:
-        </p>
-        @foreach ($comments as $comment)
-            <form action="{{ route('comment.store') }}" method="POST">
-                @csrf
-                <input type="hidden" name="post_id" value="{{ $comment->post->id }}">
-                <h1>{{ $comment->post->id }}</h1 <div class="form-group">
-                <textarea class="form-control" rows="6" id="comment_content" name="comment_content"></textarea>
-                @error('comment_content')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    @endforeach
-    </div>
+    <h1>list comment</h1>
+    <a href="{{ route('post.index') }}" class="btn btn-info">post Comments</a>
 
     <div class="container">
         <div class="row justify-content-center">
@@ -48,16 +30,16 @@
                                 <li class="list-group-item">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <h5>{{ $comments->comments_content }}</h5>
+                                            <h5>{{ $comments->comment_content }}</h5>
                                             <p>commentsed by: {{ $comments->user->first_name }}</p>
                                         </div>
                                         <div>
-                                            <a href="{{ route('comments.show', $comments->id) }}"
-                                                class="btn btn-primary">View</a>
-                                            <a href="{{ route('comments.edit', $comments->id) }}"
+                                            {{-- <a href="{{ route('comments.show', $comments->id) }}"
+                                                class="btn btn-primary">View</a> --}}
+                                            <a href="{{ route('comment.edit', $comments->id) }}"
                                                 class="btn btn-secondary">Edit</a>
-                                            <form action="{{ route('comments.destroy', $comments->id) }}"
-                                                method="comments" style="display: inline;">
+                                            <form action="{{ route('comment.destroy', $comments->id) }}" method="POST"
+                                                style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
