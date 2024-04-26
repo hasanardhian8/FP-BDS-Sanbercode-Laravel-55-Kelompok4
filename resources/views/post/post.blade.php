@@ -48,28 +48,63 @@
                 posting:
             </p>
 
-            {{-- <form action="{{ route('post.create') }}" method="POST"> --}}
-            <form action="" method="POST">
+            <form action="{{ route('post.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <textarea class="form-control" rows="6" id="post_content" name="content"></textarea>
+                    <textarea class="form-control" rows="6" id="post_content" name="post_content"></textarea>
+                    @error('post_content')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </center>
 
-    {{-- @foreach ($post as $post)
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">{{ $post->user->first_name }} {{ $post->user->last_name }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">{{ $post->content }}</p>
-                <a href="#" class="card-link">Comment</a>
-                <a href="#" class="card-link">Like</a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Posts</div>
+
+                    <div class="card-body">
+                        @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        <ul class="list-group">
+                            @foreach ($post as $post)
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5>{{ $post->post_content }}</h5>
+                                            <p>Posted by: {{ $post->user->first_name }}</p>
+                                        </div>
+                                        <div>
+                                            <a href="{{ route('post.show', $post->id) }}"
+                                                class="btn btn-primary">View</a>
+                                            <a href="{{ route('post.edit', $post->id) }}"
+                                                class="btn btn-secondary">Edit</a>
+                                            <form action="{{ route('post.destroy', $post->id) }}" method="POST"
+                                                style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                            <a href="{{ route('comment.index', $post->id) }}"
+                                                class="btn btn-info">Comments</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    @endforeach --}}
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>

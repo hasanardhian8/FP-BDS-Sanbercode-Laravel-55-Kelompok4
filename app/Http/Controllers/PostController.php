@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\Post;
-
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PostController extends Controller
 {
 
   public function index()
   {
-    // Assuming you want to display the authenticated user's post
-    $user = Auth::user();
-    $post = $user->post; // Assuming you have defined the relationship between User and Post model
-    return view('post.post', ['post' => $post]);
+    // $user = Auth::user();
+    // $posts = $user->posts;
+    $posts = Post::orderBy('created_at', 'desc')->get();
+    // dd($posts); // Debugging statement
+    return view('post.post', ['post' => $posts]);
   }
 
   public function show($postId)
@@ -26,7 +26,7 @@ class PostController extends Controller
 
   public function create()
   {
-    return view('post.create');
+    return view('post.post');
   }
 
   public function store(Request $request)
@@ -46,7 +46,7 @@ class PostController extends Controller
   public function edit($postId)
   {
     $post = Post::findOrFail($postId);
-    return view('post.edit', ['post' => $post]);
+    return view('post.edit', compact('post'));
   }
 
   public function update(Request $request, $postId)
