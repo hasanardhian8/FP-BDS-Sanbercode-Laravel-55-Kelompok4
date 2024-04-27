@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GroupController;
 use App\Models\Comment;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -22,6 +23,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/group', [GroupController::class, 'index'])->name('group.index');
+    Route::post('/group', [GroupController::class, 'store'])->name('group.store');
+    Route::get('/group/{groupId}/list', [GroupController::class, 'list'])->name('group.list');
+    Route::get('/group/{groupId}', [GroupController::class, 'show'])->name('group.show');
+    Route::post('/group/{groupId}/edit', [GroupController::class, 'edit'])->name('group.edit');
+    Route::put('/group/{groupId}', [GroupController::class, 'update'])->name('group.update');
+    Route::delete('/group/{groupId}', [GroupController::class, 'delete'])->name('group.delete');
 
     Route::get('/posts', [PostController::class, 'index'])->name('post.index');
     Route::post('/posts', [PostController::class, 'store'])->name('post.store');
