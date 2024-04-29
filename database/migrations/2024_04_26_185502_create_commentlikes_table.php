@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('commentlikes', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('comment_id');
+            $table->boolean('liked');
             $table->timestamps();
         });
     }

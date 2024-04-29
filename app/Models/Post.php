@@ -25,4 +25,9 @@ class Post extends Model
     {
         return $this->belongsTo(Group::class);
     }
+
+    public function postlike()
+    {
+        return $this->hasMany(PostLike::class);
+    }
 }

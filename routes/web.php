@@ -8,7 +8,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GroupController;
-use App\Models\Comment;
+use App\Http\Controllers\PostLikeController;
+use App\Http\Controllers\CommentLikeController;
+
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -46,8 +48,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/comment/{commentId}', [CommentController::class, 'update'])->name('comment.update');
     Route::delete('/comment/{commentId}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
-    Route::post('like/{id}', 'LikeController@like')->name('like');
-    Route::post('dislike/{id}', 'LikeController@dislike')->name('dislike');
+    Route::post('/posts/{postId}/like', [PostLikeController::class, 'likePost'])->name('post.like');
+    Route::post('/posts/{postId}/dislike', [PostLikeController::class, 'dislikePost'])->name('post.dislike');
+
+    Route::post('/comments/{commentId}/like', [CommentLikeController::class, 'likeComment'])->name('comment.like');
+    Route::post('/comments/{commentId}/dislike', [CommentLikeController::class, 'dislikeComment'])->name('comment.dislike');
 
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');

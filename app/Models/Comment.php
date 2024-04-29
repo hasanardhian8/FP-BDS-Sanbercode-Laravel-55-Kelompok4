@@ -22,4 +22,9 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function commentlike()
+    {
+        return $this->hasMany(CommentLike::class);
+    }
 }

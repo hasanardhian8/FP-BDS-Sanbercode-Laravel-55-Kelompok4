@@ -8,7 +8,7 @@
                     <div class="w-100">
                         <form action="{{ route('post.store') }}" method="POST">
                             @csrf
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <textarea class="form-control" id="post_content" name="post_content" rows="4" placeholder="What's your opinion?"></textarea>
                             </div>
                             <div class="d-flex justify-content-end">

@@ -60,4 +60,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Group::class);
     }
+
+    public function postlike()
+    {
+        return $this->hasMany(PostLike::class);
+    }
+
+    public function commentlike()
+    {
+        return $this->hasMany(CommentLike::class);
+    }
 }

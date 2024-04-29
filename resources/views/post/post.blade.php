@@ -14,9 +14,9 @@
 
     @include('components.navbar')
 
-    <div class="container">
+    {{-- <div class="container">
         <h1>Welcome, {{ $posts->first()->user->first_name }} {{ $posts->first()->user->last_name }}</h1>
-    </div>
+    </div> --}}
     <div class="container py-5 text-dark">
         @include('post.separate.formPost')
 
