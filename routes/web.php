@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/group', [GroupController::class, 'index'])->name('group.index');
     Route::post('/group', [GroupController::class, 'store'])->name('group.store');
-    Route::get('/group/{groupId}/list', [GroupController::class, 'list'])->name('group.list');
+    Route::post('/group/add', [GroupController::class, 'add'])->name('group.add');
     Route::get('/group/{groupId}', [GroupController::class, 'show'])->name('group.show');
     Route::post('/group/{groupId}/edit', [GroupController::class, 'edit'])->name('group.edit');
     Route::put('/group/{groupId}', [GroupController::class, 'update'])->name('group.update');

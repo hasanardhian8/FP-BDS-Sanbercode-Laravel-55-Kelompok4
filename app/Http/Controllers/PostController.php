@@ -5,23 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
 
   public function index()
   {
-    // $user = Auth::user();
-    // $posts = $user->posts;
-    $posts = Post::orderBy('created_at', 'desc')->get();
-    // dd($posts); // Debugging statement
-    return view('post.post', ['post' => $posts]);
+    // Retrieve posts without a group, ordered by creation date
+    $posts = Post::with('group')
+      ->whereNull('group_id')
+      ->orderBy('created_at', 'desc')
+      ->get();
+
+    return view('post.post', compact('posts'));
   }
 
   public function show($postId)
   {
     $post = Post::findOrFail($postId);
-    return view('post.showPost', ['post' => $post]);
+
+    $comments = Comment::with(['post', 'user'])
+      ->where('post_id', $postId)
+      ->orderBy('created_at', 'desc')
+      ->get(); // Group comments by post_id
+
+    return view('post.showPost', compact('post', 'comments'));
   }
 
   // public function create()

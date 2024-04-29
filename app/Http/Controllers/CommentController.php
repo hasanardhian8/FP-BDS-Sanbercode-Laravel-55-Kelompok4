@@ -15,8 +15,11 @@ class CommentController extends Controller
     //
     public function index()
     {
-        $comments = Comment::with('post')->orderBy('created_at', 'desc')->get();
-        return view('comment.list', ['comments' => $comments]);
+        $comments = Comment::with('post')
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->groupBy('post_id');
+        return view('post.post', ['comments' => $comments]);
     }
 
     public function create($postId)
@@ -50,7 +53,7 @@ class CommentController extends Controller
         ]);
 
         // Redirect back or wherever appropriate
-        return redirect()->route('comment.index', ['postId' => $request->post_id])->with('success', 'Comment submitted successfully!');
+        return redirect()->route('post.show', ['postId' => $request->post_id])->with('success', 'Comment submitted successfully!');
     }
 
     public function update(Request $request, $commentId)
@@ -67,7 +70,7 @@ class CommentController extends Controller
         $comment->comment_content = $request->comment_content;
         $comment->save();
 
-        return redirect()->route('comment.index')->with('success', 'comment updated successfully');
+        return redirect()->route('post.index')->with('success', 'comment updated successfully');
     }
 
     public function destroy(int $id)

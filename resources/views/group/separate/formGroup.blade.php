@@ -8,22 +8,24 @@
                             src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(21).webp" alt="avatar" width="65"
                             height="65" />
                         <div class="w-100">
-                            <form action="{{ route('group.store') }}" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <input type="hidden" name="group_id" value="{{ $group->groupId }}">
-                                    <div data-mdb-input-init class="form-outline">
-                                        <textarea class="form-control" id="post_content" name="post_content" rows="4" placeholder="what' your opinion"></textarea>
+                            @foreach ($groups as $group)
+                                <form action="{{ route('group.store') }}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="hidden" name="group_id" value="{{ $group->groupId }}">
+                                        <div data-mdb-input-init class="form-outline">
+                                            <textarea class="form-control" id="post_content" name="post_content" rows="4" placeholder="what' your opinion"></textarea>
+                                        </div>
+                                        <div class="d-flex flex-row-reverse mt-3 p-2">
+                                            <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                                                class="btn btn-danger">
+                                                Send
+                                                <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="d-flex flex-row-reverse mt-3 p-2">
-                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                                            class="btn btn-danger">
-                                            Send
-                                            <i class="fas fa-long-arrow-alt-right ms-1"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,3 @@
-<div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach ($groups as $group)
         <div class="col">
             <div class="card text-center" style="width: 18rem;">
@@ -10,4 +9,3 @@
             </div>
         </div>
     @endforeach
-</div>
