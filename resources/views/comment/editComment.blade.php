@@ -20,10 +20,12 @@
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="post_id" value="{{ old('post_id', $comment->post_id) }}">
-                    <input type="hidden" name="user_id" value="{{ old('user_id', $comment->user_id) }}">
+                    <input type="hidden" name="user_id" value="{{ old('user_id', auth()->id()) }}">
                     <textarea id="comment_content" name="comment_content"
                         placeholder="{{ old('comment_content', $comment->comment_content) }}"></textarea>
-                    <button type="submit">Submit</button>
+
+                    <button type="submit" class="btn btn-primary float-end">Edit</button>
+
                 </form>
             </div>
         </div>

@@ -48,7 +48,7 @@ class CommentController extends Controller
         // Create a new comment
         Comment::create([
             'post_id' => $request->post_id,
-            'user_id' => $request->user_id,
+            'user_id' => Auth::id(),
             'comment_content' => $request->comment_content,
         ]);
 
@@ -66,7 +66,7 @@ class CommentController extends Controller
 
         $comment = Comment::findOrFail($commentId);
         $comment->post_id = $request->post_id;
-        $comment->user_id = $request->user_id;
+        $comment->user_id = Auth::id();
         $comment->comment_content = $request->comment_content;
         $comment->save();
 

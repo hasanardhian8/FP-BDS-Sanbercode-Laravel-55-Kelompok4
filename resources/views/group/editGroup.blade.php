@@ -21,11 +21,11 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                     <input type="text" class="form-control" name="group_name">
                     <textarea class="form-control" rows="6" name="description"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary float-end">Edit</button>
             </form>
         </div>
     </center>

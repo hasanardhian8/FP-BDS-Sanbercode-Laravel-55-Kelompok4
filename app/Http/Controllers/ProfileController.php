@@ -39,6 +39,6 @@ class ProfileController extends Controller
         Auth::logout();
 
         // Redirect to the login page or any other page as needed
-        return redirect()->route('login')->with('success', 'Profile deleted successfully and user logged out.');
+        return redirect()->route('dashboard')->with('success', 'Profile deleted successfully and user logged out.');
     }
 }

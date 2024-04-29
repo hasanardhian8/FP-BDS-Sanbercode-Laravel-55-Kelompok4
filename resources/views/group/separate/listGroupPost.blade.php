@@ -8,8 +8,8 @@
                             <p class="card-text">{{ $post->post_content }}</p>
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                            <div>
-                                <form action="{{ route('comment.like', ['commentId' => $comment->id]) }}" method="POST">
+                            <div class="d-flex justify-content-start align-items-center">
+                                <form action="{{ route('comment.like', ['commentId' => $post->id]) }}" method="POST">
                                     @csrf
                                     <button class="btn btn-light">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -19,7 +19,7 @@
                                         </svg>
                                     </button>
                                 </form>
-                                <form action="{{ route('comment.dislike', ['commentId' => $comment->id]) }}"
+                                <form action="{{ route('comment.dislike', ['commentId' => $post->id]) }}"
                                     method="POST">
                                     @csrf
                                     <button class="btn btn-light">
@@ -32,6 +32,13 @@
                                 </form>
                             </div>
                             <div class="d-flex justify-content-end align-items-center">
+                                <a href="{{ route('post.show', $post->id) }}" class="btn btn-light">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-chat-left-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                                    </svg>
+                                </a>
                                 @if (auth()->check() && auth()->id() == $post->user_id)
                                     @include('group.separate.editGroupPost')
 

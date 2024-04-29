@@ -10,6 +10,8 @@
 </head>
 
 <body>
+    @include('components.navbar')
+
     <div class="row justify-content-center mt-5">
         <div class="col-lg-4">
             <div class="card">

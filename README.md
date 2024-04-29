@@ -29,6 +29,8 @@ Projek ini adalah sebuah kloning dari platform media sosial Facebook. Tujuan dar
 
 ### Link video & hosting
 
+[video singkat](https://youtu.be/-cKLec6RM18)
+
 ### Kontribusi:
 
 Jika Anda ingin berkontribusi pada proyek ini, silakan buat _pull request_ di repositori ini.
