@@ -30,6 +30,7 @@ Projek ini adalah sebuah kloning dari platform media sosial Facebook. Tujuan dar
 ### Link video & hosting
 
 [video singkat](https://youtu.be/-cKLec6RM18)
+[hosting app](https://fp-sanbercode-laravel-55-production.up.railway.app/)
 
 ### Kontribusi:
 
