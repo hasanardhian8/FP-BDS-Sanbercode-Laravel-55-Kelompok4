@@ -56,7 +56,7 @@ class GroupController extends Controller
         $group->description = $request->description;
         $group->save();
 
-        return redirect()->route('group.show')->with('success', 'Group created successfully');
+        return redirect()->back()->with('success', 'Group created successfully');
     }
 
     public function edit($groupId)
@@ -76,13 +76,13 @@ class GroupController extends Controller
         $group->description = $request->description;
         $group->save();
 
-        return redirect()->route('group.show')->with('success', 'Post updated successfully');
+        return redirect()->back()->with('success', 'Post updated successfully');
     }
 
     public function destroy($groupId)
     {
         $group = Group::findOrFail($groupId);
         $group->delete();
-        return redirect()->route('group.list')->with('success', 'Post deleted successfully');
+        return redirect()->back()->with('success', 'Post deleted successfully');
     }
 }

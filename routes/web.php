@@ -44,7 +44,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/comment/{postId}', [CommentController::class, 'create'])->name('comment.create');
     Route::get('/comment/{commentId}/edit', [CommentController::class, 'edit'])->name('comment.edit');
     Route::put('/comment/{commentId}', [CommentController::class, 'update'])->name('comment.update');
-    Route::delete('/comment/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::delete('/comment/{commentId}', [CommentController::class, 'destroy'])->name('comment.destroy');
+
+    Route::post('like/{id}', 'LikeController@like')->name('like');
+    Route::post('dislike/{id}', 'LikeController@dislike')->name('dislike');
+
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 });

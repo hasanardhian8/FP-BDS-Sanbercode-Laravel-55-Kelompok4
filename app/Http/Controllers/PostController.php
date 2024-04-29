@@ -27,16 +27,11 @@ class PostController extends Controller
 
     $comments = Comment::with(['post', 'user'])
       ->where('post_id', $postId)
-      ->orderBy('created_at', 'desc')
+      ->orderBy('created_at', 'asc')
       ->get(); // Group comments by post_id
 
     return view('post.showPost', compact('post', 'comments'));
   }
-
-  // public function create()
-  // {
-  //   return view('post.post');
-  // }
 
   public function store(Request $request)
   {
@@ -49,7 +44,7 @@ class PostController extends Controller
     $post->post_content = $request->post_content;
     $post->save();
 
-    return redirect()->route('post.index')->with('success', 'Post created successfully');
+    return redirect()->back()->with('success', 'Post created successfully');
   }
 
   public function edit($postId)
@@ -68,13 +63,13 @@ class PostController extends Controller
     $post->post_content = $request->post_content;
     $post->save();
 
-    return redirect()->route('post.index')->with('success', 'Post updated successfully');
+    return redirect()->back()->with('success', 'Post updated successfully');
   }
 
   public function destroy($postId)
   {
     $post = Post::findOrFail($postId);
     $post->delete();
-    return redirect()->route('post.index')->with('success', 'Post deleted successfully');
+    return redirect()->back()->with('success', 'Post deleted successfully');
   }
 }

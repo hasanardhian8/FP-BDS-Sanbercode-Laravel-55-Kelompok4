@@ -70,13 +70,13 @@ class CommentController extends Controller
         $comment->comment_content = $request->comment_content;
         $comment->save();
 
-        return redirect()->route('post.index')->with('success', 'comment updated successfully');
+        return redirect()->back()->with('success', 'comment updated successfully');
     }
 
-    public function destroy(int $id)
+    public function destroy(int $commentId)
     {
-        $comment = Comment::find($id);
+        $comment = Comment::findOrFail($commentId);
         $comment->delete();
-        return redirect()->route('comment.index')->with('success', 'comment deleted successfully');
+        return redirect()->back()->with('success', 'comment deleted successfully');
     }
 }
